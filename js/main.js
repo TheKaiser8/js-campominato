@@ -26,11 +26,11 @@
 // seleziono il container in cui si trovano i numeri
 const boardContainer = document.querySelector('.board');
 boardContainer.innerHTML = '';
+
 let cellsNumber = 100;
-const bombsNumber = 16;
 
 createBoardGame( boardContainer, cellsNumber )
-// Creo funzione per creare griglia di gioco
+// Creo funzione per generare griglia di gioco
 function createBoardGame( boardElement, cells ) {
     // creo un ciclo FOR che mi permetta di generare 100 celle numerate da 1 a 100
     for (let i = 1; i <= cells; i++) {
@@ -45,3 +45,31 @@ function createBoardGame( boardElement, cells ) {
         boardElement.append(boardCell);
     }
 }
+
+const bombsNumber = 16;
+// Creo un array vuoto in cui verranno inserite le posizioni delle bombe
+let bombsList = [];
+
+//  Genero un ciclo indefinito WHILE per definire il posizionamento delle bombe
+let i = 0;
+while ( i < bombsNumber ) {
+    // Inserisco funzione per generare numero casuale che corrispondera alla posizione della bomba
+    function getRndInteger(min, max) {
+        return Math.floor(Math.random() * (max - min + 1) ) + min;
+    }
+    // console.log(getRndInteger(1, cellsNumber));
+    const bombPosition = getRndInteger(1, cellsNumber);
+    console.log(bombPosition);
+    let inBombsList;
+    if( bombsList.includes(bombPosition) ) {
+        inBombsList = true;
+    } else {
+        bombsList.push(bombPosition);
+        i++;
+    }
+}
+console.log(bombsList);
+
+
+
+
