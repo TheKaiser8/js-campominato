@@ -1,0 +1,62 @@
+/*-------------------
+    RESET
+--------------------*/
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+/*-------------------
+    COMMON
+--------------------*/
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+/*-------------------
+    HEADER
+--------------------*/
+header  {
+    padding: 1.5rem 1rem;
+    display: flex;
+    justify-content: space-between;
+}
+.player-controls {
+    display: flex;
+    align-items: center;
+}
+/*-------------------
+    MAIN
+--------------------*/
+main {
+    background-color: #7fffd4;
+    flex-grow: 1;
+    display: flex;
+}
+.board {
+    height: 31.25rem;
+    width: 31.25rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    margin: auto;
+    background-color: gold;
+}
+.board__number {
+    height: calc(100% / 10);
+    width: calc(100% / 10);
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.board__number--clicked {
+    background-color: lightblue;
+}
+/*-------------------
+    FOOTER
+--------------------*/
+footer {
+    padding: 1.5rem 1rem;
+}
