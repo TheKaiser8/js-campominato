@@ -25,16 +25,23 @@
 --------------------*/
 // seleziono il container in cui si trovano i numeri
 const boardContainer = document.querySelector('.board');
+boardContainer.innerHTML = '';
+let cellsNumber = 100;
+const bombsNumber = 16;
 
-// creo un ciclo FOR che mi permetta di generare 100 celle numerate da 1 a 100
-for (let i = 1; i <= 100; i++) {
-    const boardCell = document.createElement('div');
-    boardCell.innerHTML = i;
-    boardCell.classList.add('board__number');
-    // aggiungo evento click che colora di azzurro ogni cella del numero cliccato
-    boardCell.addEventListener('click', function() {
-        console.log(this.innerHTML);
-        this.classList.add('board__number--clicked')
-    });
-    boardContainer.append(boardCell);
+createBoardGame( boardContainer, cellsNumber )
+// Creo funzione per creare griglia di gioco
+function createBoardGame( boardElement, cells ) {
+    // creo un ciclo FOR che mi permetta di generare 100 celle numerate da 1 a 100
+    for (let i = 1; i <= cells; i++) {
+        const boardCell = document.createElement('div');
+        boardCell.innerHTML = i;
+        boardCell.classList.add('board__number');
+        // aggiungo evento click che colora di azzurro ogni cella del numero cliccato
+        boardCell.addEventListener('click', function() {
+            console.log(this.innerHTML);
+            this.classList.add('board__number--clicked')
+        });
+        boardElement.append(boardCell);
+    }
 }
