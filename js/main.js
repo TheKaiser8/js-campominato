@@ -35,8 +35,8 @@ let bombPosition;
 let bombsList = [];
 
 //  Genero un ciclo indefinito WHILE per definire il posizionamento delle bombe
-let i = 0;
-while ( i < bombsNumber ) {
+// let i = 0;
+while ( bombsList.length < bombsNumber ) {
     // Inserisco funzione per generare numero casuale che corrisponderà alla posizione della bomba
     function getRndInteger(min, max) {
         return Math.floor(Math.random() * (max - min + 1) ) + min;
@@ -45,13 +45,13 @@ while ( i < bombsNumber ) {
     bombPosition = getRndInteger(1, cellsNumber);
     console.log(bombPosition);
 
-    // la verifica non funziona, stampa solo l'ultimo valore
+    // la verifica funziona
     let inBombsList;
     if( bombsList.includes(bombPosition) ) {
         inBombsList = true;                     // Metodo 2:
     } else {                                    // if( !bombsList.includes(bombPosition) ) {
         bombsList.push(bombPosition);           //     bombsList.push(bombPosition);
-        i++;                                    // } 
+        // i++;                                    // } 
     }
 }
 console.log(bombsList);
@@ -66,10 +66,10 @@ function createBoardGame( boardElement, cells ) {
         boardCell.classList.add('board__number');
         // aggiungo evento click che colora la cella di azzurro se non è presente la bomba e di rosso se è presente
         boardCell.addEventListener('click', function() {
-            console.log(this.innerHTML);
-
-            // la condizione non funziona
-            if( boardCell === bombPosition ) {
+            // console.log(this.innerHTML);
+            const cellClicked = Number( this.innerHTML);
+            // la condizione funziona
+            if( bombsList.includes( cellClicked )) {
                 this.classList.add('board__number--bomb');
             } else {
                 this.classList.add('board__number--clicked');
@@ -78,8 +78,3 @@ function createBoardGame( boardElement, cells ) {
         boardElement.append(boardCell);
     }
 }
-
-
-
-
-

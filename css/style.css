@@ -54,6 +54,9 @@ main {
 .board__number--clicked {
     background-color: lightblue;
 }
+.board__number--bomb {
+    background-color: red;
+}
 /*-------------------
     FOOTER
 --------------------*/
