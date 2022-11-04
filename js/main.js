@@ -29,6 +29,33 @@ boardContainer.innerHTML = '';
 
 let cellsNumber = 100;
 
+const bombsNumber = 16;
+let bombPosition;
+// Creo un array vuoto in cui verranno inserite le posizioni delle bombe
+let bombsList = [];
+
+//  Genero un ciclo indefinito WHILE per definire il posizionamento delle bombe
+let i = 0;
+while ( i < bombsNumber ) {
+    // Inserisco funzione per generare numero casuale che corrisponderà alla posizione della bomba
+    function getRndInteger(min, max) {
+        return Math.floor(Math.random() * (max - min + 1) ) + min;
+    }
+    // console.log(getRndInteger(1, cellsNumber));
+    bombPosition = getRndInteger(1, cellsNumber);
+    console.log(bombPosition);
+
+    // la verifica non funziona, stampa solo l'ultimo valore
+    let inBombsList;
+    if( bombsList.includes(bombPosition) ) {
+        inBombsList = true;                     // Metodo 2:
+    } else {                                    // if( !bombsList.includes(bombPosition) ) {
+        bombsList.push(bombPosition);           //     bombsList.push(bombPosition);
+        i++;                                    // } 
+    }
+}
+console.log(bombsList);
+
 createBoardGame( boardContainer, cellsNumber )
 // Creo funzione per generare griglia di gioco
 function createBoardGame( boardElement, cells ) {
@@ -37,38 +64,21 @@ function createBoardGame( boardElement, cells ) {
         const boardCell = document.createElement('div');
         boardCell.innerHTML = i;
         boardCell.classList.add('board__number');
-        // aggiungo evento click che colora di azzurro ogni cella del numero cliccato
+        // aggiungo evento click che colora la cella di azzurro se non è presente la bomba e di rosso se è presente
         boardCell.addEventListener('click', function() {
             console.log(this.innerHTML);
-            this.classList.add('board__number--clicked')
+
+            // la condizione non funziona
+            if( boardCell === bombPosition ) {
+                this.classList.add('board__number--bomb');
+            } else {
+                this.classList.add('board__number--clicked');
+            }
         });
         boardElement.append(boardCell);
     }
 }
 
-const bombsNumber = 16;
-// Creo un array vuoto in cui verranno inserite le posizioni delle bombe
-let bombsList = [];
-
-//  Genero un ciclo indefinito WHILE per definire il posizionamento delle bombe
-let i = 0;
-while ( i < bombsNumber ) {
-    // Inserisco funzione per generare numero casuale che corrispondera alla posizione della bomba
-    function getRndInteger(min, max) {
-        return Math.floor(Math.random() * (max - min + 1) ) + min;
-    }
-    // console.log(getRndInteger(1, cellsNumber));
-    const bombPosition = getRndInteger(1, cellsNumber);
-    console.log(bombPosition);
-    let inBombsList;
-    if( bombsList.includes(bombPosition) ) {
-        inBombsList = true;
-    } else {
-        bombsList.push(bombPosition);
-        i++;
-    }
-}
-console.log(bombsList);
 
 
 
